@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bookreader.data.book.BookMapper">
+    <insert id="addBook" parameterType="com.example.bookreader.po.book.Book" useGeneratedKeys="true" keyProperty="id">
+        insert into book(bookIndex,bookName,bookAuthor,bookPages,bookDescription) values (#{bookIndex},#{bookName},#{bookAuthor},#{bookPages},#{bookDescription})
+    </insert>
+    <select id="selectBookByAuthor" resultMap="Book">
+
+    </select>
+    <select id="selectBookByName" resultMap="Book">
+
+    </select>
+    <select id="selectBookByCategory" resultMap="Book">
+
+    </select>
+    <select id="selectBookByIndex" resultMap="Book">
+
+    </select>
+
+    <update id="updateBookSavePath">
+        update book set savePath=#{savePath} where bookIndex=#{bookIndex}
+    </update>
+
+    <delete id="deleteBookByName">
+
+    </delete>
+
+    <delete id="deleteBookByIndex">
+
+    </delete>
+
+    <select id="getBookNum">
+        select count(*) from Book
+    </select>
+    <select id="getBookNumByCategory">
+
+    </select>
+    <select id="getBookNumByAuthor">
+
+    </select>
+    <select id="getBookNumByName">
+
+    </select>
+    <select id="getBookImgUrlByIndex">
+        select bookImgUrl from book where bookIndex=#{bookIndex}
+    </select>
+
+</mapper>
