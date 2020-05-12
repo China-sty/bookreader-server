@@ -3,6 +3,8 @@ package com.example.bookreader.vo;
 import java.util.ArrayList;
 
 public class Page {
+    private String bookIndex;
+    private int charpterNum;//第几章
     private int pageNum;//第几页
     private int lineLimit;//行数限制
     private int wordLimit;//每行字数限制
@@ -10,6 +12,22 @@ public class Page {
 
     public Page() {
         lines=new ArrayList<String>();
+    }
+
+    public String getBookIndex() {
+        return bookIndex;
+    }
+
+    public void setBookIndex(String bookIndex) {
+        this.bookIndex = bookIndex;
+    }
+
+    public int getCharpterNum() {
+        return charpterNum;
+    }
+
+    public void setCharpterNum(int charpterNum) {
+        this.charpterNum = charpterNum;
     }
 
     public int getPageNum() {

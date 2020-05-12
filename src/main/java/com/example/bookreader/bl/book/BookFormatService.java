@@ -12,6 +12,6 @@ import java.util.List;
 * */
 public interface BookFormatService {
     List<Page> paging(Charpter charpter,int lineLimit,int wordLimit);//分页
-    List<Charpter> charptering(File file) throws IOException;//分章
+    List<Charpter> charptering(File file,String bookIndex) throws IOException;//分章
 
 }

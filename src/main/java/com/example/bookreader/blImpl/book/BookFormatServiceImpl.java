@@ -26,6 +26,9 @@ public class BookFormatServiceImpl implements BookFormatService {
             page.setLineLimit(lineLimit);
             page.setWordLimit(wordLimit);
             page.setPageNum(i);
+            page.setCharpterNum(charpter.getCharpterNum());
+            page.setBookIndex(charpter.getBookIndex());
+
             //读取每个page
             for(int j=0;j<lineLimit;j++){
                 char[] lineChars=new char[wordLimit];
@@ -42,7 +45,7 @@ public class BookFormatServiceImpl implements BookFormatService {
     }
 
     @Override
-    public List<Charpter> charptering(File file) throws IOException {
+    public List<Charpter> charptering(File file,String bookIndex) throws IOException {
         HashMap<String,Integer> reflection=new HashMap<String, Integer>() {
             {
                 put("一", 1);
@@ -84,6 +87,7 @@ public class BookFormatServiceImpl implements BookFormatService {
                     charpter=new Charpter();
                     charpter.setCharpterNum(reflection.get(matcher.group(1))-1);
                     charpter.setContentFromRaw(buffer.toString());
+                    charpter.setBookIndex(bookIndex);
                     charpterList.add(charpter);
                     buffer.delete(0,buffer.length());//清空buffer
                 }
@@ -96,12 +100,13 @@ public class BookFormatServiceImpl implements BookFormatService {
         }
         charpter.setContentFromRaw(buffer.toString());
         charpter.setCharpterNum(charpterList.get(charpterList.size()-1).getCharpterNum()+1);
+        charpter.setBookIndex(bookIndex);
         charpterList.add(charpter);
         return charpterList;
     }
 
     public static void main(String[] args) throws IOException {
-        List<Charpter> charpters=new BookFormatServiceImpl().charptering(new File("C:\\Users\\Administrator\\Desktop\\百年孤独.txt"));
+        List<Charpter> charpters=new BookFormatServiceImpl().charptering(new File("C:\\Users\\Administrator\\Desktop\\百年孤独.txt"),"L1");
         List<Page> pages=new BookFormatServiceImpl().paging(charpters.get(0),10,15);
         System.out.print(pages.size());
     }

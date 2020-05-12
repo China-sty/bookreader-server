@@ -16,4 +16,10 @@ server:
 mybatis:
   mapper-locations: classpath:dataImpl/*/*Mapper.xml
 
+runtime:
+  bean:
+    cache:
+      size1: 20
+      size2: 20
+
 
